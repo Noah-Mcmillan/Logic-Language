@@ -38,3 +38,5 @@ The Functions I have currently implemented are:
     And
     Or
     Not
+
+If you want to run the .lg code, you'll have to run the python file.
