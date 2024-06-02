@@ -1,9 +1,13 @@
+'''
+PUT FILE DIRECTORY IN LINE 10
+'''
+
 errors = [
     "Error: Unable to Assign word to Token ( There is probably a misspelled keyword in the file )",
 ]
 
 ##### FILE READING #####
-with open("C:\\Programming\\Logic\\Version 0.3.0\\logic_gate.lg", "r") as f:
+with open("", "r") as f:
     tokens = []
     words = []
 
