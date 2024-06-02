@@ -1,0 +1,15 @@
+and 1 1;
+or 1 1;
+not 0;
+
+bin a = 1;
+and a 1;
+or a 1;
+not a;
+
+bin b = and 0 0;
+and b a;
+or b a;
+or b;
+
+bin c = or b 1;
