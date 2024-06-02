@@ -1,5 +1,5 @@
 '''
-PUT FILE DIRECTORY IN LINE 10
+PUT FILE DIRECTORY IN LINE 20
 '''
 
 errors = [
@@ -17,7 +17,7 @@ gates = [
 ]
 
 ##### FILE READING #####
-with open("", "r") as f:
+with open("DIRECTORY HERE", "r") as f:
     tokens = []
     words = []
 
@@ -42,6 +42,8 @@ with open("", "r") as f:
                 tokens.append("Xor")
             elif word == "XNOR":
                 tokens.append("Xnor")
+            elif word == "OUT":
+                tokens.append("Out")
             elif word in "01" or word[len(word)-2] in "01":
                 tokens.append("Binary")
             elif word == "BIN":
@@ -342,7 +344,7 @@ with open("", "r") as f:
             variables.append(var)
         
         elif token == "Declarator" and tokens[parsed_index+1] == "Declaration" and tokens[parsed_index+2] == "Equal" and tokens[parsed_index+3] in gates and (tokens[parsed_index+4] == "Binary" or tokens[parsed_index+4] == "Declaration") and (tokens[parsed_index+5] == "Binary" or tokens[parsed_index+5] == "End_Line" or tokens[parsed_index+5] == "Declaration"):
-            t0 = None
+            t0 = words[parsed_index+4]
             t1 = None
             p = False
 
@@ -466,55 +468,48 @@ with open("", "r") as f:
             if p == True and not log_gate == "":
                 if log_gate == "and":
                     if t0 == "1" and t1 == "1":
-                        print("And: "+str(True))
                         var["Value"] = "1"
                     else:
-                        print("And: "+str(False))
                         var["Value"] = "0"
                 elif log_gate == "or":
                     if t0 == "1" or t1 == "1":
-                        print("Or: "+str(True))
                         var["Value"] = "1"
                     else:
-                        print("Or: "+str(False))
                         var["Value"] = "0"
                 elif log_gate == "nand":
                     if t0 == "0" or t1 == "0":
-                        print("Nand: "+str(True))
                         var["Value"] = "1"
                     else:
-                        print("Nand: "+str(False))
                         var["Value"] = "0"
                 elif log_gate == "nor":
                     if t0 == "0" and t1 == "0":
-                        print("Nor: "+str(True))
                         var["Value"] = "1"
                     else:
-                        print("Nor: "+str(False))
                         var["Value"] = "0"
                 elif log_gate == "xor":
                     if not t0 == t1:
-                        print("Xor: "+str(True))
                         var["Value"] = "1"
                     else:
-                        print("Xor: "+str(False))
                         var["Value"] = "0"
                 elif log_gate == "xnor":
                     if t0 == t1:
-                        print("Xnor: "+str(True))
                         var["Value"] = "1"
                     else:
-                        print("Xnor: "+str(False))
                         var["Value"] = "0"
                 elif log_gate == "not":
                     if t0 == "0":
-                        print("Not: "+str(True))
                         var["Value"] = "1"
                     else:
-                        print("Not: "+str(False))
                         var["Value"] = "0"
 
             variables.append(var)
+        elif token == "Out" and (tokens[parsed_index+1] == "Binary" or tokens[parsed_index+1] == "Declaration") and tokens[parsed_index+2] == "End_Line":
+            if tokens[parsed_index+1] == "Declaration":
+                for i in variables:
+                    if i["Name"] == words[parsed_index+1]:
+                        print(i["Value"])
+            else:
+                print(words[parsed_index+1])
 
         parsed_index += 1
 
