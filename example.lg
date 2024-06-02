@@ -18,3 +18,12 @@ nand 1 1;
 nor 1 1;
 xor 1 1;
 xnor 1 1;
+
+d = 0;
+out d;
+
+e = and 1 1;
+out e;
+
+f = or e d;
+out f;
