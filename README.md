@@ -1,13 +1,13 @@
 # Logic-Language
 This is a programming language but only for binary and logic gates.
 
-VERSION 0.4.1 JUST CAME OUT!!! (More Gates Update)
-from now on, there won't be 28 updates in a single day now.
-It'll be when there is a bug fix, or if I wan't something new.
+VERSION 0.4.2 released.
+Bug fix for variables:
+variables can be multiple letters.
+and with that, a bug appeared, but I squished it.
+That bug being that the interpreter would round a variable call into a single letter.
 
 0.0.0
-^ ^ ^
-| | |
 1 2 3
 
 1:
