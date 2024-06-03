@@ -7,17 +7,13 @@ variables can be multiple letters.
 and with that, a bug appeared, but I squished it.
 That bug being that the interpreter would round a variable call into a single letter.
 
-0.0.0
-1 2 3
+A.B.C
 
-1:
-Major Update
+A is major updates ( +3 Things added )
 
-2:
-New Feature
+B is new feature ( +1 Feature added )
 
-3:
-Bug-fix
+C is bugfix ( +1 Bug squished )
 
 The Functions I have currently implemented are:
     And
