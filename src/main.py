@@ -1,10 +1,6 @@
 '''
-PUT FILE DIRECTORY IN LINE 20
+PUT FILE DIRECTORY IN LINE 16
 '''
-
-errors = [
-    "Error: Unable to Assign word to Token ( There is probably a misspelled keyword in the file )",
-]
 
 gates = [
     "And",
@@ -28,6 +24,15 @@ with open("DIRECTORY HERE", "r") as f:
     for line in f:
         for word in line.split():
             word = word.upper()
+            e = False
+
+            if word[-1] == ";":
+                words.append(word[:-1])
+                e = True
+                words.append(";")
+            else:
+                words.append(word)
+
             if word == "AND":
                 tokens.append("And")
             elif word == "OR":
@@ -50,21 +55,11 @@ with open("DIRECTORY HERE", "r") as f:
                 tokens.append("Declarator")
             elif word == "=":
                 tokens.append("Equal")
-            elif word in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890" or word[:-1] in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890":
+            else:
                 tokens.append("Declaration")
-            else:
-                print(errors[0])
             
-            if word == ";" or word[len(word)-1] == ";":
+            if e == True:
                 tokens.append("End_Line")
-
-            if not word[len(word)-1] == ";":
-                words.append(word)
-            else:
-                words.append(word[0])
-                words.append(";")
-
-    #print(tokens)
     
     
     ######################### PARSER/EXECUTER #########################
