@@ -30,3 +30,6 @@ out f;
 
 bin multiple_char_var = 1;
 out multiple_char_var;
+
+reset a;
+bin a = or 1 b;
