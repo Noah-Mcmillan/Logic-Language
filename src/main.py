@@ -49,6 +49,8 @@ with open("DIRECTORY HERE", "r") as f:
                 tokens.append("Xnor")
             elif word == "OUT":
                 tokens.append("Out")
+            elif word == "RESET":
+                tokens.append("Reset")
             elif word in "01" or word[len(word)-2] in "01":
                 tokens.append("Binary")
             elif word == "BIN":
@@ -61,7 +63,9 @@ with open("DIRECTORY HERE", "r") as f:
             if e == True:
                 tokens.append("End_Line")
     
-    
+    #print(tokens)
+    #print(words)
+
     ######################### PARSER/EXECUTER #########################
 
     variable_index = 0
@@ -338,6 +342,12 @@ with open("DIRECTORY HERE", "r") as f:
 
             variables.append(var)
         
+        elif token == "Reset" and tokens[parsed_index+1] == "Declaration" and tokens[parsed_index+2] == "End_Line":
+            
+            for i in variables:
+                if i["Name"] == words[parsed_index+1]:
+                    variables.remove(i)
+        
         elif token == "Declarator" and tokens[parsed_index+1] == "Declaration" and tokens[parsed_index+2] == "Equal" and tokens[parsed_index+3] in gates and (tokens[parsed_index+4] == "Binary" or tokens[parsed_index+4] == "Declaration") and (tokens[parsed_index+5] == "Binary" or tokens[parsed_index+5] == "End_Line" or tokens[parsed_index+5] == "Declaration"):
             t0 = words[parsed_index+4]
             t1 = None
@@ -508,5 +518,5 @@ with open("DIRECTORY HERE", "r") as f:
 
         parsed_index += 1
 
-    
+
     
