@@ -28,5 +28,5 @@ out e;
 f = or e d;
 out f;
 
-bin multiple_line_var = 1;
-out multiple_line_var;
+bin multiple_char_var = 1;
+out multiple_char_var;
