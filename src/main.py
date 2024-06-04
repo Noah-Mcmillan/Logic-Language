@@ -1,7 +1,6 @@
 '''
 PUT FILE DIRECTORY IN LINE 16
 '''
-
 gates = [
     "And",
     "Or",
@@ -51,7 +50,7 @@ with open("DIRECTORY HERE", "r") as f:
                 tokens.append("Out")
             elif word == "RESET":
                 tokens.append("Reset")
-            elif word in "01" or word[len(word)-2] in "01":
+            elif word.isdigit() or word[:-1].isdigit():
                 tokens.append("Binary")
             elif word == "BIN":
                 tokens.append("Declarator")
@@ -348,6 +347,16 @@ with open("DIRECTORY HERE", "r") as f:
                 if i["Name"] == words[parsed_index+1]:
                     variables.remove(i)
         
+        elif token == "Declarator" and tokens[parsed_index+1] == "Declaration" and tokens[parsed_index+2] == "Equal" and tokens[parsed_index+3] == "Declaration" and tokens[parsed_index+4] == "End_Line":
+            var = {"Name": None,
+                "Value": None}
+
+            var["Name"] = words[parsed_index+1]
+            for i in variables:
+                if i["Name"] == words[parsed_index+3]:
+                    var["Value"] = i["Value"]
+            
+            variables.append(var)
         elif token == "Declarator" and tokens[parsed_index+1] == "Declaration" and tokens[parsed_index+2] == "Equal" and tokens[parsed_index+3] in gates and (tokens[parsed_index+4] == "Binary" or tokens[parsed_index+4] == "Declaration") and (tokens[parsed_index+5] == "Binary" or tokens[parsed_index+5] == "End_Line" or tokens[parsed_index+5] == "Declaration"):
             t0 = words[parsed_index+4]
             t1 = None
@@ -518,5 +527,5 @@ with open("DIRECTORY HERE", "r") as f:
 
         parsed_index += 1
 
-
+    #print(variables)
     
