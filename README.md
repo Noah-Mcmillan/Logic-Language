@@ -1,8 +1,9 @@
 # Logic-Language
 This is a programming language but only for binary and logic gates.
 
-VERSION 0.5.0 Just released!
-You can now reset variable's value!
+VERSION 0.5.1 released.
+You can now set a variable to another variable.
+Variables can also have numbers in it now.
 
 A.B.C
 
@@ -21,4 +22,4 @@ The Functions I have currently implemented are:
     Xor
     Xnor
     Out
-    Reset (New!)
+    Reset
