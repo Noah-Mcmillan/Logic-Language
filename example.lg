@@ -33,3 +33,8 @@ out multiple_char_var;
 
 reset a;
 bin a = or 1 b;
+
+reset b;
+reset a;
+bin a = 1;
+bin b = a;
